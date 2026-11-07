@@ -28,18 +28,24 @@ def icon(name):
 
 def signature(p):
     e = lambda v: html.escape(v, quote=True)
-    contact = []
-    if p.get("phone"):
-        tel = "+" + re.sub(r"\D", "", p["phone"])
-        contact.append(f'<a href="tel:{tel}" {LINK}>{e(p["phone"])}</a>')
-    if p.get("email"):
-        contact.append(f'<a href="mailto:{e(p["email"])}" {LINK}>{e(p["email"])}</a>')
+    phones = p.get("phone") or []
+    if isinstance(phones, str):
+        phones = [phones]
+    tels = [f'<a href="tel:+{re.sub(r"\D", "", n)}" {LINK}>{e(n)}</a>' for n in phones]
+    mail = (f'<a href="mailto:{e(p["email"])}" {LINK}>{e(p["email"])}</a>'
+            if p.get("email") else "")
+    if len(tels) > 1:  # several numbers: numbers on one line, email on the next
+        lines = [SEP.join(tels), mail]
+    else:
+        lines = [SEP.join(tels + ([mail] if mail else []))]
+    contact_html = "".join(
+        f'<div style="font-size:12px;line-height:18px;">{l}</div>' for l in lines if l)
     return f'''<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:{FONT};font-size:13px;line-height:20px;color:#111111;"><tr>
 <td style="padding:0 18px 0 0;vertical-align:middle;"><img src="{BASE}neem-logo-keyline.png" alt="Neem" width="80" height="24" style="display:block;border:0;width:80px;height:24px;"></td>
 <td style="padding:0 0 0 18px;border-left:1px solid #E0DDD7;vertical-align:middle;">
 <div style="font-size:14px;line-height:20px;font-weight:600;">{e(p["name"])}</div>
 <div style="color:#6B6B6B;padding:0 0 6px 0;">{e(p["title"])}</div>
-<div style="font-size:12px;line-height:18px;">{SEP.join(contact)}</div>
+{contact_html}
 <div style="border-top:1px solid #E0DDD7;margin-top:6px;padding-top:6px;font-size:12px;line-height:18px;white-space:nowrap;">{icon("web")}<a href="{WEB_URL}" {LINK}>neem.io</a><span style="display:inline-block;width:16px;font-size:0;line-height:0;">&nbsp;</span>{icon("linkedin")}<a href="{LINKEDIN_URL}" {LINK}>LinkedIn</a></div>
 </td></tr></table>'''
 
