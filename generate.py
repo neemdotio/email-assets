@@ -29,9 +29,12 @@ def icon(name):
 def signature(p):
     e = lambda v: html.escape(v, quote=True)
     contact = []
-    if p.get("phone"):
-        tel = "+" + re.sub(r"\D", "", p["phone"])
-        contact.append(f'<a href="tel:{tel}" {LINK}>{e(p["phone"])}</a>')
+    phones = p.get("phone") or []
+    if isinstance(phones, str):
+        phones = [phones]
+    if phones:
+        links = [f'<a href="tel:+{re.sub(r"\D", "", ph)}" {LINK}>{e(ph)}</a>' for ph in phones]
+        contact.append(", ".join(links))
     if p.get("email"):
         contact.append(f'<a href="mailto:{e(p["email"])}" {LINK}>{e(p["email"])}</a>')
     return f'''<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:{FONT};font-size:13px;line-height:20px;color:#111111;"><tr>
