@@ -44,11 +44,13 @@
   {
     "name": "Muhammad Fahad",
     "title": "DevOps Engineer",
+    "phone": "+92 320 9203632",
     "email": "fahad@neem.io"
   },
   {
     "name": "Faisal Baig",
     "title": "Manager Reconciliations and Operations | NPMN",
+    "phone": "+92 313 2221356",
     "email": "faisal.baig@neem.io"
   },
   {
@@ -113,6 +115,7 @@
   {
     "name": "Maham Israr",
     "title": "QA Engineer",
+    "phone": "+92 336 3310137",
     "email": "maham@neem.io"
   },
   {
@@ -135,7 +138,7 @@
   },
   {
     "name": "Nadeem Shaikh",
-    "title": "Executive Founder",
+    "title": "Founder",
     "phone": [
       "+92 300 838 1967",
       "+44 777 190 7791"
@@ -216,7 +219,7 @@
   },
   {
     "name": "Vladimira Mesko Briestenska",
-    "title": "Executive Founder",
+    "title": "Founder",
     "phone": "+421 910 155 954",
     "email": "vladimira@neem.io"
   },
