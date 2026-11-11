@@ -49,9 +49,10 @@
   },
   {
     "name": "Faisal Baig",
-    "title": "Manager Reconciliations and Operations | NPMN",
+    "title": "Manager Reconciliations and Operations",
     "phone": "+92 313 2221356",
-    "email": "faisal.baig@neem.io"
+    "email": "faisal.baig@neem.io",
+    "brand": "paymenow"
   },
   {
     "name": "Faisal Kazmi",
@@ -79,9 +80,10 @@
   },
   {
     "name": "Syed Hassan Ali",
-    "title": "Customer Experience Manager | NPMN",
+    "title": "Customer Experience Manager",
     "phone": "+92 313 2094566",
-    "email": "hassan@neem.io"
+    "email": "hassan@neem.io",
+    "brand": "paymenow"
   },
   {
     "name": "Iftikhar Hussain",
@@ -160,9 +162,10 @@
   },
   {
     "name": "Niran Rehman",
-    "title": "General Manager & Founding Partner | NPMN",
+    "title": "General Manager & Founding Partner",
     "phone": "+92 300 8204278",
-    "email": "niran@neem.io"
+    "email": "niran@neem.io",
+    "brand": "paymenow"
   },
   {
     "name": "Omar Jamil",
@@ -178,9 +181,10 @@
   },
   {
     "name": "Syed Raffat Raza",
-    "title": "Business Development Manager | NPMN",
+    "title": "Business Development Manager",
     "phone": "+92 321 2175674",
-    "email": "raza.zaidi@neem.io"
+    "email": "raza.zaidi@neem.io",
+    "brand": "paymenow"
   },
   {
     "name": "Rizwan Mujtaba",
@@ -226,9 +230,10 @@
   },
   {
     "name": "Abdul Wase",
-    "title": "Program Associate | NPMN",
+    "title": "Program Associate",
     "phone": "+92 307 2687849",
-    "email": "wase@neem.io"
+    "email": "wase@neem.io",
+    "brand": "paymenow"
   },
   {
     "name": "Zeeshan Khan",
