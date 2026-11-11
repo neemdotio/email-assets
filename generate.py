@@ -16,8 +16,19 @@ BASE = "https://raw.githubusercontent.com/neemdotio/email-assets/main/"
 FONT = "'General Sans','Helvetica Neue',Helvetica,Arial,sans-serif"
 LINK = 'style="color:#111111;text-decoration:none;"'
 SEP = '<span style="color:#C9C5BD;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>'
-WEB_URL = "https://www.neem.io"
-LINKEDIN_URL = "https://www.linkedin.com/company/neemdotio"
+BRANDS = {
+    "neem": {
+        "logo": "neem-logo-keyline.png", "alt": "Neem", "logo_w": 80, "logo_h": 24,
+        "web_url": "https://www.neem.io", "web_text": "neem.io",
+        "linkedin_url": "https://www.linkedin.com/company/neemdotio",
+    },
+    # Set "brand": "paymenow" on a person in people.json to use this template.
+    "paymenow": {
+        "logo": "paymenow-logo-keyline.png", "alt": "Neem Paymenow", "logo_w": 163, "logo_h": 21,
+        "web_url": "https://paymenow.neem.io/", "web_text": "paymenow.neem.io",
+        "linkedin_url": "https://www.linkedin.com/showcase/neem-paymenow",
+    },
+}
 
 
 def icon(name):
@@ -27,6 +38,7 @@ def icon(name):
 
 
 def signature(p):
+    b = BRANDS[p.get("brand", "neem")]
     e = lambda v: html.escape(v, quote=True)
     contact = []
     phones = p.get("phone") or []
@@ -38,12 +50,12 @@ def signature(p):
     if p.get("email"):
         contact.append(f'<a href="mailto:{e(p["email"])}" {LINK}>{e(p["email"])}</a>')
     return f'''<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:{FONT};font-size:13px;line-height:20px;color:#111111;"><tr>
-<td style="padding:0 18px 0 0;vertical-align:middle;"><img src="{BASE}neem-logo-keyline.png" alt="Neem" width="80" height="24" style="display:block;border:0;width:80px;height:24px;"></td>
+<td style="padding:0 18px 0 0;vertical-align:middle;"><img src="{BASE}{b["logo"]}" alt="{b["alt"]}" width="{b["logo_w"]}" height="{b["logo_h"]}" style="display:block;border:0;width:{b["logo_w"]}px;height:{b["logo_h"]}px;"></td>
 <td style="padding:0 0 0 18px;border-left:1px solid #E0DDD7;vertical-align:middle;">
 <div style="font-size:14px;line-height:20px;font-weight:600;">{e(p["name"])}</div>
 <div style="color:#6B6B6B;padding:0 0 6px 0;">{e(p["title"])}</div>
 <div style="font-size:12px;line-height:18px;">{SEP.join(contact)}</div>
-<div style="border-top:1px solid #E0DDD7;margin-top:6px;padding-top:6px;font-size:12px;line-height:18px;white-space:nowrap;">{icon("web")}<a href="{WEB_URL}" {LINK}>neem.io</a><span style="display:inline-block;width:16px;font-size:0;line-height:0;">&nbsp;</span>{icon("linkedin")}<a href="{LINKEDIN_URL}" {LINK}>LinkedIn</a></div>
+<div style="border-top:1px solid #E0DDD7;margin-top:6px;padding-top:6px;font-size:12px;line-height:18px;white-space:nowrap;">{icon("web")}<a href="{b["web_url"]}" {LINK}>{b["web_text"]}</a><span style="display:inline-block;width:16px;font-size:0;line-height:0;">&nbsp;</span>{icon("linkedin")}<a href="{b["linkedin_url"]}" {LINK}>LinkedIn</a></div>
 </td></tr></table>'''
 
 
