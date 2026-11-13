@@ -49,13 +49,16 @@ def signature(p):
         contact.append(", ".join(links))
     if p.get("email"):
         contact.append(f'<a href="mailto:{e(p["email"])}" {LINK}>{e(p["email"])}</a>')
+    # Title and contact details are optional (shared mailboxes like support@ have neither).
+    title_html = f'<div style="color:#6B6B6B;padding:0 0 6px 0;">{e(p["title"])}</div>' if p.get("title") else ""
+    contact_html = f'<div style="font-size:12px;line-height:18px;">{SEP.join(contact)}</div>' if contact else ""
+    rule = "border-top:1px solid #E0DDD7;margin-top:6px;padding-top:6px;" if (title_html or contact_html) else ""
     return f'''<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:{FONT};font-size:13px;line-height:20px;color:#111111;"><tr>
 <td style="padding:0 18px 0 0;vertical-align:middle;"><img src="{BASE}{b["logo"]}" alt="{b["alt"]}" width="{b["logo_w"]}" height="{b["logo_h"]}" style="display:block;border:0;width:{b["logo_w"]}px;height:{b["logo_h"]}px;"></td>
 <td style="padding:0 0 0 18px;border-left:1px solid #E0DDD7;vertical-align:middle;">
 <div style="font-size:14px;line-height:20px;font-weight:600;">{e(p["name"])}</div>
-<div style="color:#6B6B6B;padding:0 0 6px 0;">{e(p["title"])}</div>
-<div style="font-size:12px;line-height:18px;">{SEP.join(contact)}</div>
-<div style="border-top:1px solid #E0DDD7;margin-top:6px;padding-top:6px;font-size:12px;line-height:18px;white-space:nowrap;">{icon("web")}<a href="{b["web_url"]}" {LINK}>{b["web_text"]}</a><span style="display:inline-block;width:16px;font-size:0;line-height:0;">&nbsp;</span>{icon("linkedin")}<a href="{b["linkedin_url"]}" {LINK}>LinkedIn</a></div>
+{title_html}{contact_html}
+<div style="{rule}font-size:12px;line-height:18px;white-space:nowrap;">{icon("web")}<a href="{b["web_url"]}" {LINK}>{b["web_text"]}</a><span style="display:inline-block;width:16px;font-size:0;line-height:0;">&nbsp;</span>{icon("linkedin")}<a href="{b["linkedin_url"]}" {LINK}>LinkedIn</a></div>
 </td></tr></table>'''
 
 
