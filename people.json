@@ -254,6 +254,9 @@
     "email": "zia@neem.io"
   },
   {
-    "name": "Neem Team"
+    "name": "Neem Team",
+    "layout": "stacked",
+    "tagline": "Making money movement simpler for businesses",
+    "instagram": "neemdotio"
   }
 ]

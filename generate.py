@@ -37,7 +37,24 @@ def icon(name):
             'width:14px;height:14px;margin:0 6px 2px 0;">')
 
 
+def stacked_signature(p):
+    """Brand layout: logo, tagline, then website | LinkedIn | Instagram (for shared mailboxes)."""
+    b = BRANDS[p.get("brand", "neem")]
+    links = [(icon("web"), b["web_url"], b["web_text"]),
+             (icon("linkedin"), b["linkedin_url"], "LinkedIn")]
+    if p.get("instagram"):
+        links.append((icon("instagram"), f'https://www.instagram.com/{p["instagram"]}/', "Instagram"))
+    row = SEP.join(f'{ic}<a href="{u}" {LINK}>{t}</a>' for ic, u, t in links)
+    return f'''<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:{FONT};font-size:13px;line-height:20px;color:#111111;">
+<tr><td style="padding:0 0 8px 0;"><img src="{BASE}{b["logo"]}" alt="{b["alt"]}" width="{b["logo_w"]}" height="{b["logo_h"]}" style="display:block;border:0;width:{b["logo_w"]}px;height:{b["logo_h"]}px;"></td></tr>
+<tr><td style="padding:0 0 8px 0;font-size:13px;line-height:20px;color:#6B6B6B;">{html.escape(p["tagline"])}</td></tr>
+<tr><td style="border-top:1px solid #E0DDD7;padding:8px 0 0 0;font-size:12px;line-height:18px;white-space:nowrap;">{row}</td></tr>
+</table>'''
+
+
 def signature(p):
+    if p.get("layout") == "stacked":
+        return stacked_signature(p)
     b = BRANDS[p.get("brand", "neem")]
     e = lambda v: html.escape(v, quote=True)
     contact = []
